@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Form Validation</title>
+<style>label{display:block;margin:6px 0} .err{color:#d32f2f}</style>
+</head>
+<body>
+<h1>Validation</h1>
+<form id="f">
+  <label>Name <input id="name"></label>
+  <label>Age <input id="age" type="number" min="1"></label>
+  <button>Submit</button>
+  <div id="msg" class="err"></div>
+  <div id="ok"></div>
+</form>
+<script>
+document.getElementById('f').addEventListener('submit',e=>{
+  e.preventDefault();
+  const name=document.getElementById('name').value.trim();
+  const age=Number(document.getElementById('age').value);
+  const msg=document.getElementById('msg');
+  const ok=document.getElementById('ok');
+  msg.textContent=''; ok.textContent='';
+  if(!name){msg.textContent='Name is required';return}
+  if(!Number.isFinite(age)||age<1){msg.textContent='Enter valid age';return}
+  ok.textContent=`Valid: ${name}, ${age}`;
+});
+</script>
+</body>
+</html>
+
+
