@@ -1,26 +1,117 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>React State & Props</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>React State and Props</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f0f0f0;
+        }
+        
+        #root {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
-<div id="root"></div>
-<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
-<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
-<script>
-const {useState} = React;
-function Counter({step}){
-  const [count,setCount]=useState(0);
-  return React.createElement('div',null,
-    React.createElement('p',null,'Count: ',count),
-    React.createElement('button',{onClick:()=>setCount(count+step)},'Add ',step)
-  );
-}
-const root=ReactDOM.createRoot(document.getElementById('root'));
-root.render(React.createElement(Counter,{step:1}));
-</script>
+    <div id="root"></div>
+    
+    <!-- React and ReactDOM from CDN -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    
+    <script>
+        const { useState } = React;
+        
+        // Counter component demonstrating State
+        function Counter({ step, initialValue = 0 }) {
+            // Using useState hook for state management
+            const [count, setCount] = useState(initialValue);
+            
+            const increment = () => {
+                setCount(count + step);
+            };
+            
+            const decrement = () => {
+                setCount(count - step);
+            };
+            
+            const reset = () => {
+                setCount(initialValue);
+            };
+            
+            return React.createElement('div', { style: { 
+                padding: '20px', 
+                background: 'white', 
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            }},
+                React.createElement('h2', null, 'Counter Component'),
+                React.createElement('p', { style: { fontSize: '24px', fontWeight: 'bold' } }, 
+                    'Count: ', count
+                ),
+                React.createElement('p', { style: { color: '#666' } }, 
+                    'Step: ', step, ' (passed as prop)'
+                ),
+                React.createElement('div', { style: { marginTop: '15px' } },
+                    React.createElement('button', { 
+                        onClick: decrement,
+                        style: { padding: '8px 15px', margin: '5px', cursor: 'pointer' }
+                    }, 'Decrement'),
+                    React.createElement('button', { 
+                        onClick: reset,
+                        style: { padding: '8px 15px', margin: '5px', cursor: 'pointer' }
+                    }, 'Reset'),
+                    React.createElement('button', { 
+                        onClick: increment,
+                        style: { padding: '8px 15px', margin: '5px', cursor: 'pointer' }
+                    }, 'Increment')
+                )
+            );
+        }
+        
+        // User info component demonstrating Props
+        function UserInfo({ name, age, city }) {
+            return React.createElement('div', { style: { 
+                marginTop: '20px',
+                padding: '20px', 
+                background: 'white', 
+                borderRadius: '8px',
+                boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            }},
+                React.createElement('h2', null, 'User Info Component'),
+                React.createElement('p', null, 'Name: ', name),
+                React.createElement('p', null, 'Age: ', age),
+                React.createElement('p', null, 'City: ', city),
+                React.createElement('p', { style: { color: '#666', fontSize: '12px' } }, 
+                    '(All data passed as props)'
+                )
+            );
+        }
+        
+        // Main App component
+        function App() {
+            return React.createElement('div', null,
+                React.createElement('h1', { style: { textAlign: 'center' } }, 
+                    'Experiment 10: React State and Props'
+                ),
+                React.createElement(Counter, { step: 1, initialValue: 0 }),
+                React.createElement(Counter, { step: 5, initialValue: 10 }),
+                React.createElement(UserInfo, { 
+                    name: 'John Doe', 
+                    age: 25, 
+                    city: 'New York' 
+                })
+            );
+        }
+        
+        // Render the app
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(React.createElement(App));
+    </script>
 </body>
 </html>
-
-

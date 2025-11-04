@@ -1,33 +1,179 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Form Validation</title>
-<style>label{display:block;margin:6px 0} .err{color:#d32f2f}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation with JavaScript</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+        
+        label {
+            display: block;
+            margin: 15px 0 5px 0;
+            font-weight: bold;
+        }
+        
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        .error {
+            color: #d32f2f;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+        
+        .success {
+            color: #2e7d32;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-<h1>Validation</h1>
-<form id="f">
-  <label>Name <input id="name"></label>
-  <label>Age <input id="age" type="number" min="1"></label>
-  <button>Submit</button>
-  <div id="msg" class="err"></div>
-  <div id="ok"></div>
-</form>
-<script>
-document.getElementById('f').addEventListener('submit',e=>{
-  e.preventDefault();
-  const name=document.getElementById('name').value.trim();
-  const age=Number(document.getElementById('age').value);
-  const msg=document.getElementById('msg');
-  const ok=document.getElementById('ok');
-  msg.textContent=''; ok.textContent='';
-  if(!name){msg.textContent='Name is required';return}
-  if(!Number.isFinite(age)||age<1){msg.textContent='Enter valid age';return}
-  ok.textContent=`Valid: ${name}, ${age}`;
-});
-</script>
+    <h1>Experiment 9: Form Validation with JavaScript</h1>
+    
+    <form id="myForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <div id="nameError" class="error"></div>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <div id="emailError" class="error"></div>
+        
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="1">
+        <div id="ageError" class="error"></div>
+        
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone">
+        <div id="phoneError" class="error"></div>
+        
+        <button type="submit">Submit</button>
+        <div id="successMessage" class="success"></div>
+    </form>
+    
+    <script>
+        const form = document.getElementById('myForm');
+        
+        // Validation functions
+        function validateName(name) {
+            if (name.trim() === '') {
+                return 'Name is required';
+            }
+            if (name.length < 3) {
+                return 'Name must be at least 3 characters';
+            }
+            return '';
+        }
+        
+        function validateEmail(email) {
+            if (email.trim() === '') {
+                return 'Email is required';
+            }
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                return 'Please enter a valid email address';
+            }
+            return '';
+        }
+        
+        function validateAge(age) {
+            if (age === '' || age === null) {
+                return 'Age is required';
+            }
+            const ageNum = parseInt(age);
+            if (isNaN(ageNum) || ageNum < 1 || ageNum > 120) {
+                return 'Please enter a valid age (1-120)';
+            }
+            return '';
+        }
+        
+        function validatePhone(phone) {
+            if (phone.trim() === '') {
+                return 'Phone number is required';
+            }
+            const phoneRegex = /^[0-9]{10}$/;
+            if (!phoneRegex.test(phone.replace(/\s+/g, ''))) {
+                return 'Please enter a valid 10-digit phone number';
+            }
+            return '';
+        }
+        
+        // Form submission handler
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Clear previous messages
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('ageError').textContent = '';
+            document.getElementById('phoneError').textContent = '';
+            document.getElementById('successMessage').textContent = '';
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const age = document.getElementById('age').value;
+            const phone = document.getElementById('phone').value;
+            
+            // Validate all fields
+            let isValid = true;
+            const nameError = validateName(name);
+            const emailError = validateEmail(email);
+            const ageError = validateAge(age);
+            const phoneError = validatePhone(phone);
+            
+            if (nameError) {
+                document.getElementById('nameError').textContent = nameError;
+                isValid = false;
+            }
+            
+            if (emailError) {
+                document.getElementById('emailError').textContent = emailError;
+                isValid = false;
+            }
+            
+            if (ageError) {
+                document.getElementById('ageError').textContent = ageError;
+                isValid = false;
+            }
+            
+            if (phoneError) {
+                document.getElementById('phoneError').textContent = phoneError;
+                isValid = false;
+            }
+            
+            // If all validations pass
+            if (isValid) {
+                document.getElementById('successMessage').textContent = 
+                    'Form submitted successfully! All fields are valid.';
+            }
+        });
+    </script>
 </body>
 </html>
-
-

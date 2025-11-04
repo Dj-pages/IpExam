@@ -1,4 +1,14 @@
-.title{color:#0b8043}
-.external{background:#fff8e1;padding:8px;border:1px solid #f1c40f}
+/* External CSS file - style.css */
 
+.title {
+    color: #0b8043;
+    font-size: 2em;
+}
 
+.external {
+    background-color: #fff8e1;
+    padding: 12px;
+    border: 1px solid #f1c40f;
+    border-radius: 4px;
+    margin: 10px 0;
+}

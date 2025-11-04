@@ -1,21 +1,51 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Links, Lists, Frames</title>
-<style>iframe{border:1px solid #aaa}</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hyperlinks, Lists and Frames</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        iframe {
+            border: 1px solid #aaa;
+            margin: 10px 0;
+        }
+        
+        ul, ol {
+            margin: 10px 0;
+        }
+    </style>
 </head>
 <body>
-<h1>Links + Lists + Frame</h1>
-<ol>
-  <li><a href="#a">Section A</a></li>
-  <li><a href="#b">Section B</a></li>
-</ol>
-<h2 id="a">A</h2>
-<ul><li>Item 1</li><li>Item 2</li></ul>
-<h2 id="b">B</h2>
-<iframe src="https://example.com" width="400" height="150" title="frame"></iframe>
+    <h1>Experiment 4: Hyperlinks, Lists and Frames</h1>
+    
+    <h2>Navigation Links</h2>
+    <ol>
+        <li><a href="#section1">Go to Section 1</a></li>
+        <li><a href="#section2">Go to Section 2</a></li>
+        <li><a href="https://example.com" target="_blank">External Link</a></li>
+    </ol>
+    
+    <h2 id="section1">Section 1</h2>
+    <ul>
+        <li>First item in unordered list</li>
+        <li>Second item in unordered list</li>
+        <li>Third item in unordered list</li>
+    </ul>
+    
+    <h2 id="section2">Section 2</h2>
+    <p>This section contains an iframe:</p>
+    <iframe src="https://example.com" width="500" height="200" title="Example Frame"></iframe>
+    
+    <h2>Ordered List Example</h2>
+    <ol>
+        <li>Step one</li>
+        <li>Step two</li>
+        <li>Step three</li>
+    </ol>
 </body>
 </html>
-
-

@@ -1,18 +1,43 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Internal + External CSS</title>
-<link rel="stylesheet" href="style.css">
-<style>
-.internal{border-left:4px solid #1a73e8;padding-left:8px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal and External CSS</title>
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Internal CSS -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #fafafa;
+        }
+        
+        .internal {
+            border-left: 4px solid #1a73e8;
+            padding-left: 12px;
+            margin: 15px 0;
+        }
+        
+        h1 {
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-<h1 class="title">Internal and External CSS</h1>
-<p class="internal">This line is styled by internal CSS.</p>
-<p class="external">This one is styled by external CSS.</p>
+    <h1>Experiment 6: Internal and External CSS</h1>
+    
+    <p class="internal">
+        This paragraph is styled using internal CSS. Notice the blue left border and padding.
+    </p>
+    
+    <p class="external">
+        This paragraph is styled using external CSS from the style.css file.
+    </p>
+    
+    <div class="external">
+        <p>This div also uses external CSS styling.</p>
+    </div>
 </body>
 </html>
-
-

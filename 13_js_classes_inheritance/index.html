@@ -1,19 +1,91 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Classes: Person → Student</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Classes and Inheritance</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            padding: 30px;
+            background-color: #f5f5f5;
+        }
+        
+        #output {
+            background-color: white;
+            padding: 20px;
+            border: 2px solid #333;
+            border-radius: 5px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+            line-height: 1.6;
+        }
+        
+        h1 {
+            color: #333;
+        }
+    </style>
 </head>
 <body>
-<h1>Person / Student</h1>
-<pre id="out"></pre>
-<script>
-class Person{constructor(name,age){this.name=name;this.age=age} info(){return `${this.name} (${this.age})`}}
-class Student extends Person{constructor(name,age,course,marks){super(name,age);this.course=course;this.marks=marks}}
-const s1=new Student('Asha',19,'CS',88); const s2=new Student('Vikram',20,'IT',91);
-document.getElementById('out').textContent=`Students:\n${s1.info()}\n${s2.info()}`;
-</script>
+    <h1>Experiment 13: JavaScript Classes and Inheritance</h1>
+    <div id="output"></div>
+    
+    <script>
+        // Base class: Person
+        class Person {
+            constructor(name, age) {
+                this.name = name;
+                this.age = age;
+            }
+            
+            // Method to display person data
+            displayData() {
+                return `Name: ${this.name}, Age: ${this.age}`;
+            }
+        }
+        
+        // Derived class: Student extends Person
+        class Student extends Person {
+            constructor(name, age, course, marks) {
+                // Call parent class constructor
+                super(name, age);
+                this.course = course;
+                this.marks = marks;
+            }
+            
+            // Override displayData method to include student-specific info
+            displayData() {
+                return `${super.displayData()}, Course: ${this.course}, Marks: ${this.marks}`;
+            }
+            
+            // Additional method specific to Student
+            getGrade() {
+                if (this.marks >= 90) return 'A';
+                if (this.marks >= 80) return 'B';
+                if (this.marks >= 70) return 'C';
+                if (this.marks >= 60) return 'D';
+                return 'F';
+            }
+        }
+        
+        // Create student instances
+        const student1 = new Student('Alice', 20, 'Computer Science', 88);
+        const student2 = new Student('Bob', 19, 'Information Technology', 92);
+        
+        // Display student details (name and age as required)
+        const output = document.getElementById('output');
+        output.textContent = `Person Class and Student Class Demonstration
+        
+${student1.displayData()}
+Student 1 Grade: ${student1.getGrade()}
+
+${student2.displayData()}
+Student 2 Grade: ${student2.getGrade()}
+
+--- Displaying only name and age as required ---
+
+Student 1: ${student1.name}, ${student1.age} years old
+Student 2: ${student2.name}, ${student2.age} years old`;
+    </script>
 </body>
 </html>
-
-

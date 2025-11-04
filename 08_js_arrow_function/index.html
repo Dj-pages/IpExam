@@ -1,17 +1,63 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<title>Arrow Function Demo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arrow Function Demonstration</title>
+    <style>
+        body {
+            font-family: 'Courier New', monospace;
+            padding: 30px;
+            background-color: #f5f5f5;
+        }
+        
+        #output {
+            background-color: white;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-top: 20px;
+            white-space: pre-wrap;
+        }
+    </style>
 </head>
 <body>
-<h1>Arrow Function</h1>
-<pre id="out"></pre>
-<script>
-const add=(a,b)=>a+b; const square=x=>x*x; const greet=name=>`Hello, ${name}!`;
-document.getElementById('out').textContent=`add(2,3) = ${add(2,3)}\nsquare(4) = ${square(4)}\n${greet('World')}`;
-</script>
+    <h1>Experiment 8: Arrow Function Demonstration</h1>
+    <div id="output"></div>
+    
+    <script>
+        // Arrow function examples
+        
+        // Simple arrow function with two parameters
+        const add = (a, b) => a + b;
+        
+        // Arrow function with single parameter (parentheses optional)
+        const square = x => x * x;
+        
+        // Arrow function with multiple statements
+        const greet = name => {
+            return `Hello, ${name}!`;
+        };
+        
+        // Arrow function returning object
+        const createPerson = (name, age) => ({
+            name: name,
+            age: age
+        });
+        
+        // Arrow function used as callback
+        const numbers = [1, 2, 3, 4, 5];
+        const doubled = numbers.map(num => num * 2);
+        
+        // Display results
+        const output = document.getElementById('output');
+        output.textContent = `Arrow Function Examples:
+        
+1. Addition: add(5, 3) = ${add(5, 3)}
+2. Square: square(4) = ${square(4)}
+3. Greet: ${greet('World')}
+4. Create Person: ${JSON.stringify(createPerson('John', 25))}
+5. Map function: [1, 2, 3, 4, 5] => ${JSON.stringify(doubled)}`;
+    </script>
 </body>
 </html>
-
-
